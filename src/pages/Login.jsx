@@ -35,8 +35,10 @@ const Login = () => {
                     toast.error(data.message)
                 }
                 
-            }else{
+            }else if (state === "Doctor") {
               // API call for Doctor
+              
+
             }
             
         } catch (error) {
