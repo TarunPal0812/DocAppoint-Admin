@@ -1,50 +1,61 @@
-import { useState } from "react"
-import { assets } from "../assets/assets"
-import { useContext } from "react"
-import { AdminContext } from "../context/AdminContext"
-import axios from "axios"
-import { toast } from "react-toastify"
-
+import { useState } from "react";
+import { assets } from "../assets/assets";
+import { useContext } from "react";
+import { AdminContext } from "../context/AdminContext";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { DoctorContext } from "../context/DoctorContext";
 
 const Login = () => {
+  const [state, setState] = useState("Admin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [state, setState] = useState("Admin")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+  const { setAToken, backendUrl } = useContext(AdminContext);
+  const { setDToken } = useContext(DoctorContext);
 
-    const {setAToken,backendUrl} = useContext(AdminContext)
+  const submitHandaler = async (e) => {
+    e.preventDefault();
 
-    const submitHandaler = async(e)=>{
-        e.preventDefault()
+    // Doing the API call
 
-        // Doing the API call
+    try {
+      if (state === "Admin") {
+        // API call for Admin
 
-        try {
+        const { data } = await axios.post(backendUrl + "/api/admin/login", {
+          email,
+          password,
+        });
 
-            if (state === "Admin") {
-
-                // API call for Admin
-
-                const { data } = await axios.post(backendUrl + "/api/admin/login",{email,password});
-
-                if (data.success) {
-                    localStorage.setItem("atoken", data.token);
-                   setAToken(data.token);
-                    
-                }else{
-                    toast.error(data.message)
-                }
-                
-            }else if (state === "Doctor") {
-              // API call for Doctor
-              
-
-            }
-            
-        } catch (error) {
-            
+        if (data.success) {
+          localStorage.setItem("atoken", data.token);
+          setAToken(data.token);
+        } else {
+          toast.error(data.message);
         }
+      } else {
+        // API call for Doctor
+        const { data } = await axios.post(backendUrl + "/api/doctor/login", {
+          email,
+          password,
+        });
+
+        // console.log(data);
+
+        if (data.success) {
+          localStorage.setItem("dtoken", data.token);
+          setDToken(data.token);
+          console.log(dToken);
+          
+        } else {
+          toast.error(data.message);
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
+  };
 
   return (
     <form className="min-h-[80vh] flex items-center" onSubmit={submitHandaler}>
@@ -99,6 +110,6 @@ const Login = () => {
       </div>
     </form>
   );
-}
+};
 
-export default Login
+export default Login;
