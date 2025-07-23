@@ -65,13 +65,19 @@ const Dashbord = () => {
                   alt=""
                 />
                 <div className="flex-1 text-sm">
-                  <p className="text-gray-800 font-medium">{items.docData.name}</p>
+                  <p className="text-gray-800 font-medium">
+                    {items.docData.name}
+                  </p>
                   <p className="text-gray-600">
                     {formatSlotDate(items.slotDate)}
                   </p>
                 </div>
                 {items.cancelled ? (
                   <p className="text-red-400 text-xs font-medium">Cancelled</p>
+                ) : items.isCompleted ? (
+                  <p className="text-green-500 text-xs font-medium">
+                    Completed
+                  </p>
                 ) : (
                   <img
                     onClick={() => cancelAppointment(items._id)}
