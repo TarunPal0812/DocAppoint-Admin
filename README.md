@@ -7,7 +7,7 @@
 
 The **Admin Panel** of DocAppoint is a React.js-based dashboard that allows superusers (admins) to manage doctors, appointments, and access platform-wide analytics. It consumes RESTful APIs from the backend and ensures that only authorized admins can perform high-level operations.
 
-🌐 **Live URL**: [https://user.docappoint.com](https://user.docappoint.com)  
+🌐 **Live URL**: [https://admin.docappoint.com](https://docappoint-admin.netlify.app/)  
 
 ---
 
@@ -23,8 +23,8 @@ The **Admin Panel** of DocAppoint is a React.js-based dashboard that allows supe
 ## 🚀 Setup Instructions
 
 ```bash
-git clone https://github.com/TaruPal0812/client-admin.git
-cd client-admin
+git clone https://github.com/TaruPal0812/DocAppoint-Admin.git
+cd DocAppoint-Admin
 npm install
 npm run dev
 ````
