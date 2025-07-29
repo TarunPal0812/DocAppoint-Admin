@@ -1,0 +1,15 @@
+
+<svg width="240" height="70" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="70" fill="#ffffff"/>
+  <g transform="translate(15,15)">
+    <!-- Calendar icon with medical cross -->
+    <rect x="0" y="0" width="50" height="50" rx="8" ry="8" fill="#2D9CDB"/>
+    <rect x="8" y="12" width="34" height="28" fill="#ffffff" rx="4"/>
+    <line x1="8" y1="22" x2="42" y2="22" stroke="#2D9CDB" stroke-width="2"/>
+    <!-- Medical Cross -->
+    <rect x="23" y="28" width="4" height="12" fill="#2D9CDB"/>
+    <rect x="20" y="31" width="10" height="4" fill="#2D9CDB"/>
+  </g>
+  <!-- Bolder App Name Text -->
+  <text x="75" y="45" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#2D9CDB">DocAppoint</text>
+</svg>
