@@ -1,141 +1,66 @@
+# DocAppoint - Admin & Doctor Dashboard
 
-
----
-
-````markdown
-# 🛡️ DocAppoint Admin Panel
-
-The **Admin Panel** of DocAppoint is a React.js-based dashboard that allows superusers (admins) to manage doctors, appointments, and access platform-wide analytics. It consumes RESTful APIs from the backend and ensures that only authorized admins can perform high-level operations.
-
-🌐 **Live URL**: [https://admin.docappoint.com](https://docappoint-admin.netlify.app/)  
+The **Admin & Doctor Dashboard** is a unified React application serving two distinct roles: Super Admins managing the platform, and Doctors managing their individual practices. 
 
 ---
 
-## 🧩 Tech Stack
+## Tech Stack
 
-- **React.js**
-- **Axios** for HTTP requests
-- **JWT-based authentication**
-- **Tailwind CSS** for UI
+- **Framework:** React.js + Vite
+- **Styling:** Tailwind CSS
+- **Routing:** React Router DOM
+- **State Management:** React Context API (AdminContext, DoctorContext, AppContext)
+- **API Communication:** Axios
+- **Notifications:** React Toastify
 
 ---
 
-## 🚀 Setup Instructions
+## Setup & Installation
 
+### 1. Clone & Install Dependencies
 ```bash
-git clone https://github.com/TaruPal0812/DocAppoint-Admin.git
-cd DocAppoint-Admin
+cd admin
 npm install
-npm run dev
-````
+```
 
----
-
-## 🔐 .env Setup
-
-Create a `.env` file with:
+### 2. Environment Configuration
+Create a `.env` file in the root of the `admin` directory:
 
 ```env
-VITE_ADMIN_API=http://localhost:5000/api/admin
+# Point to your local backend (http://localhost:3001) for development
+# Or use the production URL:
+VITE_BACKEND_URL=https://docappoint-server-eyak.onrender.com
 ```
 
----
-
-## 📁 Suggested File Structure
-
+### 3. Start the Development Server
+```bash
+npm run dev
 ```
-admin-panel/
-├── public/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   ├── utils/
-│   ├── App.jsx
-│   └── main.jsx
-├── .env
-└── README.md
-```
+The dashboard will be available at `http://localhost:5174` (or 5173 depending on availability).
 
 ---
 
-## 🛠️ Key Functionalities
+## Key Features
 
-### ✅ Authentication
+### Super Admin Capabilities
+- **Platform Analytics:** View total doctors, patients, appointments, and recent activity on the dashboard.
+- **Doctor Management:** Add new doctors to the system with their credentials, specialization, fees, and profile photo.
+- **Availability Control:** Toggle doctor availability globally.
+- **Appointment Oversight:** View and cancel any appointment across the platform.
 
-* Admin Login with JWT
-* Store JWT in localStorage
-
-### 🧑‍⚕️ Doctor Management
-
-* Add New Doctors (image upload)
-* List All Doctors
-* Change Availability
-
-### 📅 Appointment Management
-
-* View All Appointments
-* Cancel Appointments
-
-### 📊 Dashboard
-
-* View counts: Total Appointments, Registered Doctors, Patients
-* Display analytics data
+### Doctor Capabilities
+- **Practice Analytics:** View personal earnings, total patients, and upcoming appointments.
+- **Appointment Management:** Mark appointments as completed or cancel them if necessary.
+- **Profile Customization:** Update fees, experience, about section, and availability status.
 
 ---
 
-## 📡 Sample API Usage
+## Live Deployment
 
-```js
-// services/adminAPI.js
-import axios from 'axios';
-
-const adminAPI = axios.create({ baseURL: import.meta.env.VITE_ADMIN_API });
-
-adminAPI.interceptors.request.use((req) => {
-  const token = localStorage.getItem('adminToken');
-  if (token) req.headers.Authorization = `Bearer ${token}`;
-  return req;
-});
-
-export const login = (data) => adminAPI.post('/login', data);
-export const getDoctors = () => adminAPI.get('/all-doctors');
-export const getDashboard = () => adminAPI.get('/dashboard');
-```
-
-
-
-## ⚙️ Deployment
-
-Use Vercel or Netlify:
-
-* Add `VITE_ADMIN_API` as environment variable
+The admin dashboard is configured to communicate with the production API deployed at:
+https://docappoint-server-eyak.onrender.com
 
 ---
 
-## 🧪 Testing with Postman
-
-Use the backend API collection documented in `backend/README.md`. All admin routes require JWT tokens in headers:
-
-```
-Authorization: Bearer <admin_token>
-```
-
----
-
-## ✍️ Maintainer Notes
-
-* Ensure admin accounts are created manually via DB or pre-seed
-* Role-checking logic should be enforced in middleware (backend)
-
----
-
-## 📞 Contact
-
-* Built by Team DocAppoint Admin
-* GitHub: [@TarunPal0812](https://github.com/TarunPal0812)
-* Email: [tarunpal0812@gmail.com](mailto:tarunpal0812@gmail.com) *(demo)*
-
----
-
-
+## License
+MIT License

@@ -2,13 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import { createContext } from "react";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 export const AdminContext = createContext();
 
-const AdminContextProvider = (props) => {
+const AdminContextProvider = ({ children }) => {
   const backendUrl =
     import.meta.env.VITE_BACKEND_URL ||
-    "https://docappoint-server.onrender.com";
+    "https://docappoint-server-eyak.onrender.com";
   const [aToken, setAToken] = useState(
     localStorage.getItem("atoken") ? localStorage.getItem("atoken") : ""
   );
@@ -122,9 +123,13 @@ const getDashData = async () => {
 
   return (
     <AdminContext.Provider value={value}>
-      {props.children}
+      {children}
     </AdminContext.Provider>
   );
+};
+
+AdminContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default AdminContextProvider;

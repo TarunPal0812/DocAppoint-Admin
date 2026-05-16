@@ -1,13 +1,14 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 export const DoctorContext = createContext();
 
-const DoctorContextProvider = (props) => {
+const DoctorContextProvider = ({ children }) => {
   const backendUrl =
     import.meta.env.VITE_BACKEND_URL ||
-    "https://docappoint-server.onrender.com";
+    "https://docappoint-server-eyak.onrender.com";
 
   const [dToken, setDToken] = useState(
     localStorage.getItem("dtoken") ? localStorage.getItem("dtoken") : ""
@@ -121,9 +122,13 @@ const DoctorContextProvider = (props) => {
 
   return (
     <DoctorContext.Provider value={value}>
-      {props.children}
+      {children}
     </DoctorContext.Provider>
   );
+};
+
+DoctorContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default DoctorContextProvider;

@@ -1,8 +1,9 @@
 import { createContext } from "react";
+import PropTypes from "prop-types";
 
 export const AppContext = createContext()
 
-const AppContextProvider = (props)=>{
+const AppContextProvider = ({ children }) => {
 
     const currency = "₹";
 
@@ -45,9 +46,13 @@ const AppContextProvider = (props)=>{
 
     return (
         <AppContext.Provider value={value}>
-           {props.children} 
+           {children} 
         </AppContext.Provider>
     )
 }
+
+AppContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default AppContextProvider
